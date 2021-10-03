@@ -54,6 +54,8 @@ jobs:
           MANAGER_TWO_PASSWORD: ${{ secrets.MANAGER_TWO_PASSWORD }}
           MANAGER_TWO_UUID: ${{ secrets.MANAGER_TWO_UUID }}
 
+          HEADLESS: "true"
+
           BASE_URL: https://frontend-web-shameekagarwal.cloud.okteto.net
         run: ./mvnw --batch-mode test
 
