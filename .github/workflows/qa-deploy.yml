@@ -21,10 +21,9 @@ jobs:
       - name: activate okteto namespace
         uses: okteto/namespace@master
         with:
-          name: hello-world
+          name: timely
 
       - name: create okteto deployment
         uses: okteto/deploy-stack@latest
         with:
           file: docker-compose.qa.yml
-          namespace: hello-world
