@@ -31,6 +31,11 @@ jobs:
           java-version: "16"
           distribution: "adopt"
 
+      - name: setup chrome driver
+        run: |
+          chmod +x drivers-setup.sh
+          ./drivers-setup.sh
+
       - name: run tests
         env:
           ASSOCIATE_ONE_EMAIL: ${{ secrets.ASSOCIATE_ONE_EMAIL }}
