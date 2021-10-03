@@ -25,6 +25,8 @@ public class DriverConfig {
         } catch (Exception ignored) {
             options.setHeadless(true);
         }
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
         return options;
     }
 
