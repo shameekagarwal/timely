@@ -27,3 +27,4 @@ jobs:
         uses: okteto/deploy-stack@latest
         with:
           file: docker-compose.qa.yml
+          namespace: hello-world

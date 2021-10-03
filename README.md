@@ -1,5 +1,7 @@
 # Timely
 
+**[link to app](https://timely-11.herokuapp.com/)**
+
 ## About
 
 1. timely is a project management tool, to help a team with agile development
@@ -13,8 +15,6 @@
 <a href="https://drive.google.com/file/d/12KbKsRV4CZnhcW94z8rQHBpu6VsibAWx/view?usp=drivesdk" target="_blank">
     <img src="./img/video-ss.png" />
 </a>
-
-<br />
 
 ## Details
 
