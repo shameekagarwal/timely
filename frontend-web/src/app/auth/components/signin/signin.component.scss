@@ -1,0 +1,13 @@
+div {
+  h1 {
+    @apply mb-8;
+  }
+
+  mat-form-field {
+    @apply w-full;
+  }
+
+  button {
+    @apply mt-3;
+  }
+}

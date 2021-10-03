@@ -1,0 +1,22 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "~@angular/material/theming";
+
+$custom-typography: mat-typography-config(
+  $font-family: '"Ubuntu", sans-serif;',
+);
+
+@include mat-core($custom-typography);
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Ubuntu", sans-serif;
+  background-color: #f7f5fb;
+}

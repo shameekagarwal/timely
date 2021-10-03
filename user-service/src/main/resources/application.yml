@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: user-service
+
+  profiles:
+    active: ${ACTIVE_PROFILE}
+
+  cloud:
+    discovery:
+      enabled: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+custom:
+  firebase:
+    credentials: ${FIREBASE_CREDENTIALS}

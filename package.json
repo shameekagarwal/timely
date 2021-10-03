@@ -1,0 +1,34 @@
+{
+  "name": "timely",
+  "version": "1.0.0",
+  "description": "a project management tool",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shameekagarwal/timely.git"
+  },
+  "author": "shameek agarwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shameekagarwal/timely/issues"
+  },
+  "homepage": "https://github.com/shameekagarwal/timely#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^13.2.0",
+    "@commitlint/config-conventional": "^13.2.0",
+    "husky": "^7.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}

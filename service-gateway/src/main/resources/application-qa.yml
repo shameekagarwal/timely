@@ -1,0 +1,11 @@
+server:
+  port: 3000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://service-registry:3000/eureka
+
+spring:
+  zipkin:
+    base-url: http://zipkin:9411/

@@ -1,0 +1,10 @@
+notes.md
+firebase_config.prod.json
+firebase_config.dev.json
+./index.html
+.vscode
+.env
+timely_key_pair.pem
+set-env.sh
+node_modules
+

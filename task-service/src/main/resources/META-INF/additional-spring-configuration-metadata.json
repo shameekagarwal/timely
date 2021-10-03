@@ -1,0 +1,34 @@
+{
+  "properties": [
+    {
+      "name": "custom.firebase.credentials",
+      "type": "java.lang.String",
+      "description": "firebase credentials in json format"
+    },
+
+    {
+      "name": "custom.rabbitmq.project-save-queue",
+      "type": "java.lang.String"
+    },
+
+    {
+      "name": "custom.rabbitmq.project-delete-queue",
+      "type": "java.lang.String"
+    },
+
+    {
+      "name": "custom.rabbitmq.project-save-binding",
+      "type": "java.lang.String"
+    },
+
+    {
+      "name": "custom.rabbitmq.project-delete-binding",
+      "type": "java.lang.String"
+    },
+
+    {
+      "name": "custom.rabbitmq.exchange",
+      "type": "java.lang.String"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+<div>
+  <h1 data-testid="projects-edit-headline">{{ editMode ? "Update" : "Create" }} Project</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput data-testid="input-title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Associates</mat-label>
+      <mat-chip-list #chipList>
+        <mat-chip
+          *ngFor="let user of selectedUsers"
+          [selectable]="true"
+          [removable]="true"
+          (removed)="remove(user)"
+        >
+          {{ user.email }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+
+        <input
+          #associatesInput
+          formControlName="associates"
+          [matAutocomplete]="autoComplete"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeys"
+          data-testid="input-associates"
+        />
+      </mat-chip-list>
+      <mat-autocomplete
+        #autoComplete="matAutocomplete"
+        (optionSelected)="select($event)"
+      >
+        <mat-option *ngFor="let user of filteredUsers$ | async" [value]="user">
+          {{ user.email }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="loading$ | async"
+      data-testid="button-save"
+    >
+      {{ editMode ? "Update" : "Create" }}
+    </button>
+    <button
+      type="button"
+      (click)="onDelete()"
+      *ngIf="editMode"
+      mat-raised-button
+      color="primary"
+      [disabled]="loading$ | async"
+      data-testid="button-delete"
+    >
+      Delete
+    </button>
+  </form>
+</div>

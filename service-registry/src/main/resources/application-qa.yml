@@ -1,0 +1,6 @@
+server:
+  port: 3000
+
+spring:
+  zipkin:
+    base-url: http://zipkin:9411/

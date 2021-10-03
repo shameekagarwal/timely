@@ -1,0 +1,12 @@
+h1 {
+  @apply text-5xl font-bold italic mt-10 mb-16;
+}
+
+ul {
+  list-style: disc;
+  @apply ml-10;
+
+  li {
+    @apply text-lg text-gray-700 w-4/5;
+  }
+}

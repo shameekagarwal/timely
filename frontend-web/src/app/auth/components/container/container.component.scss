@@ -1,0 +1,11 @@
+div {
+  @apply flex flex-col md:flex-row gap-10;
+
+  app-signin {
+    @apply md:w-1/2;
+  }
+
+  app-signup {
+    @apply md:w-1/2;
+  }
+}

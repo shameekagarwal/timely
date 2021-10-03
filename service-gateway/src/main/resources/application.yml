@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: service-gateway
+
+  profiles:
+    active: ${ACTIVE_PROFILE}
+
+  cloud:
+    discovery:
+      enabled: true
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+
+      globalcors:
+        corsConfigurations:
+          "[/**]":
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+
+      routes:
+        - id: project-service
+          uri: lb://PROJECT-SERVICE
+          predicates:
+            - Path=/projects/**
+          filters:
+            - RewritePath=/projects(?<segment>/?.*), $\{segment}
+
+        - id: task-service
+          uri: lb://TASK-SERVICE
+          predicates:
+            - Path=/tasks/**
+          filters:
+            - RewritePath=/tasks(?<segment>/?.*), $\{segment}
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+          filters:
+            - RewritePath=/users(?<segment>/?.*), $\{segment}
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE

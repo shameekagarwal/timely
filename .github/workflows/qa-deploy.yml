@@ -1,0 +1,29 @@
+name: qa deploy
+
+on:
+  push:
+    branches:
+      - qa
+
+jobs:
+  qa-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+
+      - name: login to okteto
+        uses: okteto/login@master
+        with:
+          token: ${{ secrets.OKTETO_TOKEN }}
+
+      - name: activate okteto namespace
+        uses: okteto/namespace@master
+        with:
+          name: hello-world
+
+      - name: create okteto deployment
+        uses: okteto/deploy-stack@latest
+        with:
+          file: docker-compose.qa.yml

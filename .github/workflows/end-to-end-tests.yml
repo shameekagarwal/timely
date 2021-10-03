@@ -1,0 +1,68 @@
+name: end-to-end tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: end-to-end-tests
+
+jobs:
+  end-to-end-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+
+      - name: cache local maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: setup jdk 16
+        uses: actions/setup-java@v2
+        with:
+          java-version: "16"
+          distribution: "adopt"
+
+      - name: run tests
+        env:
+          ASSOCIATE_ONE_EMAIL: ${{ secrets.ASSOCIATE_ONE_EMAIL }}
+          ASSOCIATE_ONE_PASSWORD: ${{ secrets.ASSOCIATE_ONE_PASSWORD }}
+          ASSOCIATE_ONE_UUID: ${{ secrets.ASSOCIATE_ONE_UUID }}
+
+          ASSOCIATE_TWO_EMAIL: ${{ secrets.ASSOCIATE_TWO_EMAIL }}
+          ASSOCIATE_TWO_PASSWORD: ${{ secrets.ASSOCIATE_TWO_PASSWORD }}
+          ASSOCIATE_TWO_UUID: ${{ secrets.ASSOCIATE_TWO_UUID }}
+
+          MANAGER_ONE_EMAIL: ${{ secrets.MANAGER_ONE_EMAIL }}
+          MANAGER_ONE_PASSWORD: ${{ secrets.MANAGER_ONE_PASSWORD }}
+          MANAGER_ONE_UUID: ${{ secrets.MANAGER_ONE_UUID }}
+
+          MANAGER_TWO_EMAIL: ${{ secrets.MANAGER_TWO_EMAIL }}
+          MANAGER_TWO_PASSWORD: ${{ secrets.MANAGER_TWO_PASSWORD }}
+          MANAGER_TWO_UUID: ${{ secrets.MANAGER_TWO_UUID }}
+
+          BASE_URL: https://frontend-web-shameekagarwal.cloud.okteto.net
+        run: ./mvnw --batch-mode test
+
+      - name: generate reports
+        if: always()
+        run: |
+          ./mvnw site -DgenerateReports=false
+          ./mvnw surefire-report:report-only
+
+      - name: upload reports
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          path: |
+            end-to-end-tests/target/surefire-reports
+            end-to-end-tests/target/site
+          name: end-to-end-tests-reports

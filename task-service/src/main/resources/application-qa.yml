@@ -1,0 +1,21 @@
+server:
+  port: 3000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://service-registry:3000/eureka
+
+  instance:
+    prefer-ip-address: true
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI}
+
+  zipkin:
+    base-url: http://zipkin:9411/
+
+  rabbitmq:
+    addresses: rabbitmq:5672

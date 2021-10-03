@@ -1,0 +1,23 @@
+server:
+  port: 9001
+
+eureka:
+  client:
+    enabled: false
+
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      auto-index-creation: true
+      host: localhost
+      port: 6001
+      username: db-user
+      password: db-password
+      database: project-db
+
+  zipkin:
+    base-url: http://localhost:7001/
+
+  rabbitmq:
+    addresses: localhost:5002

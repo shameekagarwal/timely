@@ -1,0 +1,24 @@
+name: frontend web qa deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - frontend-web/**
+
+jobs:
+  frontend-web-prod-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+
+      - name: deploy to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: timely-11
+          heroku_email: ${{ secrets.HEROKU_USER }}
+          appdir: frontend-web

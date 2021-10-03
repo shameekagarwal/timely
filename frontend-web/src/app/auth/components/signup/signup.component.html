@@ -1,0 +1,51 @@
+<div>
+  <h1 data-testid="signup-headline">Don't have an Account?</h1>
+  <form #form="ngForm" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        ngModel
+        name="email"
+        matInput
+        type="email"
+        data-testid="signup-input-email"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        ngModel
+        name="password"
+        matInput
+        type="password"
+        data-testid="signup-input-password"
+      />
+    </mat-form-field>
+
+    <label id="role">Select your Role</label>
+    <mat-radio-group ngModel name="role" color="primary">
+      <mat-radio-button
+        value="ROLE_ASSOCIATE"
+        data-testid="signup-radio-associate"
+      >
+        Associate
+      </mat-radio-button>
+      <mat-radio-button
+        value="ROLE_MANAGER"
+        data-testid="signup-radio-manager"
+      >
+        Manager
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="loading$ | async"
+      data-testid="signup-button"
+    >
+      Signup
+    </button>
+  </form>
+</div>

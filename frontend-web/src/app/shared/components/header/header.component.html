@@ -1,0 +1,53 @@
+<mat-toolbar color="primary" class="mat-elevation-z2">
+  <header>
+    <span id="brand">timely</span>
+    <span id="spacer"></span>
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      mat-button
+      [routerLinkActiveOptions]="{ exact: true }"
+      data-testid="header-link-home"
+    >
+      Home
+    </a>
+    <a
+      routerLink="/projects/"
+      routerLinkActive="active"
+      mat-button
+      [routerLinkActiveOptions]="{ exact: true }"
+      *ngIf="isAuthenticated"
+      data-testid="header-link-projects"
+    >
+      Projects
+    </a>
+    <a
+      routerLink="/tasks/"
+      routerLinkActive="active"
+      mat-button
+      [routerLinkActiveOptions]="{ exact: true }"
+      *ngIf="isAuthenticated"
+      data-testid="header-link-tasks"
+    >
+      Tasks
+    </a>
+    <a
+      routerLink="/authorize/"
+      routerLinkActive="active"
+      mat-button
+      [routerLinkActiveOptions]="{ exact: true }"
+      *ngIf="!isAuthenticated"
+      data-testid="header-link-authorize"
+    >
+      Authorize
+    </a>
+    <a
+      *ngIf="isAuthenticated"
+      mat-button
+      (click)="signout()"
+      data-testid="header-link-signout"
+    >
+      Signout
+    </a>
+  </header>
+</mat-toolbar>

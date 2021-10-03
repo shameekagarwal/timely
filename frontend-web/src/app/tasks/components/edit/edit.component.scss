@@ -1,0 +1,25 @@
+div {
+  h1 {
+    @apply mb-8;
+  }
+
+  mat-form-field {
+    @apply w-full;
+  }
+
+  #taskStatus {
+    @apply block;
+  }
+
+  mat-radio-group {
+    @apply block mt-3 mb-8;
+
+    mat-radio-button {
+      @apply mr-5;
+    }
+  }
+
+  button {
+    @apply mt-5 mr-3;
+  }
+}

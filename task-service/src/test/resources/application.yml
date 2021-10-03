@@ -1,0 +1,17 @@
+eureka:
+  client:
+    enabled: false
+
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
+
+custom:
+  rabbitmq:
+    project-save-queue: project-save-queue
+    project-delete-queue: project-delete-queue
+    project-save-binding: project-save-binding
+    project-delete-binding: project-delete-binding
+    exchange: exchange

@@ -1,0 +1,88 @@
+version: "3.9"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 5672
+
+  zipkin:
+    image: openzipkin/zipkin
+    restart: always
+    ports:
+      - 9411:9411
+
+  service-registry:
+    image: shameek/timely-service-registry
+    restart: always
+    environment:
+      ACTIVE_PROFILE: qa
+    ports:
+      - 3000:3000
+    depends_on:
+      - zipkin
+
+  service-gateway:
+    image: shameek/timely-service-gateway
+    restart: always
+    environment:
+      ACTIVE_PROFILE: qa
+    ports:
+      - 3000:3000
+    depends_on:
+      - service-registry
+      - zipkin
+
+  project-service:
+    image: shameek/timely-project-service
+    restart: always
+    environment:
+      ACTIVE_PROFILE: qa
+      FIREBASE_CREDENTIALS: ${FIREBASE_CREDENTIALS}
+      MONGODB_URI: ${MONGODB_PROJECT_URI}
+    ports:
+      - 3000:3000
+    depends_on:
+      - service-registry
+      - service-gateway
+      - project-service-db
+      - rabbitmq
+      - zipkin
+
+  task-service:
+    image: shameek/timely-task-service
+    restart: always
+    environment:
+      ACTIVE_PROFILE: qa
+      FIREBASE_CREDENTIALS: ${FIREBASE_CREDENTIALS}
+      MONGODB_URI: ${MONGODB_TASK_URI}
+    ports:
+      - 3000:3000
+    depends_on:
+      - service-registry
+      - service-gateway
+      - task-service-db
+      - rabbitmq
+      - zipkin
+
+  user-service:
+    image: shameek/timely-user-service
+    restart: always
+    environment:
+      ACTIVE_PROFILE: qa
+      FIREBASE_CREDENTIALS: ${FIREBASE_CREDENTIALS}
+    ports:
+      - 3000:3000
+    depends_on:
+      - service-registry
+      - service-gateway
+      - zipkin
+
+  frontend-web:
+    image: shameek/timely-frontend-web
+    restart: always
+    environment:
+      PORT: 3000
+    ports:
+      - 3000:3000

@@ -1,0 +1,26 @@
+name: project service prod deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - project-service/**
+
+jobs:
+  project-service-prod-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+
+      - name: deploy to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: timely-project-service11
+          heroku_email: ${{ secrets.HEROKU_USER }}
+          appdir: project-service
+          healthcheck: https://timely-project-service11.herokuapp.com/ping
+          checkstring: pong from project-service

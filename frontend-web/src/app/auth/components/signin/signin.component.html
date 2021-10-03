@@ -1,0 +1,35 @@
+<div>
+  <h1 data-testid="signin-headline">Already have an Account?</h1>
+  <form #form="ngForm" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        ngModel
+        name="email"
+        matInput
+        type="email"
+        data-testid="signin-input-email"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        ngModel
+        name="password"
+        matInput
+        type="password"
+        data-testid="signin-input-password"
+      />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="loading$ | async"
+      data-testid="signin-button"
+    >
+      Signin
+    </button>
+  </form>
+</div>

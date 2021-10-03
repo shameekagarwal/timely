@@ -1,0 +1,28 @@
+div {
+  @apply pt-2;
+
+  table {
+    @apply w-full;
+  }
+
+  mat-form-field {
+    width: 98%;
+    @apply mx-auto block;
+  }
+}
+
+a {
+  @apply mb-10;
+}
+
+#TODO {
+  @apply text-red-500 font-bold;
+}
+
+#IN_PROGRESS {
+  @apply text-yellow-500 font-bold;
+}
+
+#DONE {
+  @apply text-green-500 font-bold;
+}

@@ -1,0 +1,19 @@
+header {
+  @apply container mx-auto flex px-4;
+
+  #brand {
+    @apply text-3xl p-0 m-0 hidden md:inline;
+  }
+
+  #spacer {
+    flex: 1 1 auto;
+  }
+
+  a {
+    @apply ml-2;
+  }
+
+  a.active {
+    @apply bg-blue-900;
+  }
+}

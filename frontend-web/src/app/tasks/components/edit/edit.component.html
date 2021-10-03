@@ -1,0 +1,64 @@
+<div>
+  <h1 data-testid="tasks-edit-headline">
+    {{ editMode ? "Update" : "Create" }} Task
+  </h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput data-testid="input-title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        rows="3"
+        formControlName="description"
+        matInput
+        data-testid="input-description"
+      >
+      </textarea>
+    </mat-form-field>
+
+    <label id="taskStatus">Task Status</label>
+    <mat-radio-group formControlName="taskStatus" color="primary">
+      <mat-radio-button value="TODO" data-testid="radio-todo">
+        Todo
+      </mat-radio-button>
+      <mat-radio-button value="IN_PROGRESS" data-testid="radio-inprogress">
+        In Progress
+      </mat-radio-button>
+      <mat-radio-button value="DONE" data-testid="radio-done">
+        Done
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Select a project</mat-label>
+      <mat-select formControlName="project" data-testid="select-project">
+        <mat-option *ngFor="let project of projects" [value]="project">
+          {{ project.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="loading$ | async"
+      data-testid="button-save"
+    >
+      {{ editMode ? "Update" : "Create" }}
+    </button>
+    <button
+      type="button"
+      (click)="onDelete()"
+      *ngIf="editMode"
+      mat-raised-button
+      color="primary"
+      [disabled]="loading$ | async"
+      data-testid="button-delete"
+    >
+      Delete
+    </button>
+  </form>
+</div>

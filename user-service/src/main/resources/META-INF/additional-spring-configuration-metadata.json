@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "custom.firebase.credentials",
+      "type": "java.lang.String",
+      "description": "firebase credentials in json format"
+    }
+  ]
+}

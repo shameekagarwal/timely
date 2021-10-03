@@ -1,0 +1,17 @@
+server:
+  port: ${PORT}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${SERVICE_REGISTRY}
+
+  instance:
+    hostname: ${HOSTNAME}
+    non-secure-port-enabled: true
+    secure-port-enabled: false
+    non-secure-port: 80
+
+spring:
+  zipkin:
+    enabled: false
