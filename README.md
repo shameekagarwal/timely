@@ -66,3 +66,20 @@
 7. unit, integration, api and end-to-end tests are run by github actions
 8. if successful, merge to main
 9. on merging to main, the main version is deployed to heroku
+
+#### Stack
+
+1. angular
+2. angular-material
+3. docker
+4. firebase (authentication)
+5. github-actions
+6. heroku
+7. junit and mockito
+8. ngrx (with ngrx-effects and ngrx-entity)
+9. okteto
+10. rabbitmq
+11. rest-assured
+12. selenium
+13. spring-boot
+14. spring-cloud
